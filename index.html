@@ -44,8 +44,8 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <input  id="incrementAmount" type="text" class="form-control text-center" value="1">
+                           <button id="increment" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$59</h5>
@@ -83,14 +83,13 @@
       // Increment Button Handler
 
       const incrementBtn = document.getElementById("increment");
+      const decrementBtn = document.getElementById("decrement");
+
       incrementBtn.addEventListener("click", function () {
          const addIncrementAmount = document.getElementById("incrementAmount").value;
          let addIncrementNumber = parseFloat(addIncrementAmount);
          addIncrementNumber++;
          document.getElementById("incrementAmount").value = addIncrementNumber;
-
-
-
          const currentPrice = document.getElementById("currentPrice").innerText;
          const currentNumber = parseFloat(currentPrice);
          const total = addIncrementNumber * currentNumber;
@@ -100,9 +99,10 @@
 })
 
 
-   // Decrement button haldler
-
    
+
+
+
 
 
 
