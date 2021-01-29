@@ -43,12 +43,14 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="handleProductChange('case',false)" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="case-count" type="text" class="form-control text-center" value="1">
-                           <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductChange('case', true)" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5 id="case-total">$ 59</span></h5>
+                        <h5 id="case-total">$ 59</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,7 +66,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5 id="sub-total">$1,278</h5>
+                        <h5 id="total-price">$ 1278</h5>
                         <h5>$0</h5>
                         <h5 id="grand-total">$1,278</h5>
                      </div>
@@ -82,52 +84,158 @@
    <script>
 
 
-      // Increment Button Handler for Phone Case
+      // document.getElementById('case-increase').addEventListener('click', function () {
 
-      document.getElementById('case-increase').addEventListener('click', function () {
+      //    handleProductChange(true);
+      // });
 
-         const caseInput = document.getElementById('case-count');   // Capturing id
-         const caseCount = parseInt(caseInput.value); //  Convert id from string to number
-         const caseNewCount = caseCount + 1;    // Increase the number of the id
-         caseInput.value = caseNewCount;     //  Set the value for display 
-         const caseTotal = caseNewCount * 59;
-         document.getElementById('case-total').innerText = "$" + caseTotal;
-      });
 
 
       // Decrement Button Handler for Phone Case
 
-      document.getElementById('case-decrease').addEventListener('click', function () {
+      // document.getElementById('case-decrease').addEventListener('click', function () {
 
-         const caseInput = document.getElementById('case-count');
-         const caseCount = parseInt(caseInput.value);
-         const caseNewCount = caseCount - 1;
-         caseInput.value = caseNewCount;
-         const caseTotal = caseNewCount * 59;
-         document.getElementById('case-total').innerText = "$" + caseTotal;
+      //    handleProductChange(false);
+
+      // });
+
+      function handleProductChange(product,isIncrease) {
+         const productInput = document.getElementById(product + '-count');
+         const productCount = parseInt(productInput.value);
+         // const caseNewCount = caseCount - 1;
+         let productNewCount = 0;
+         if (isIncrease == true) {
+            productNewCount = productCount + 1;
+
+         }
+         if (isIncrease == false && productCount > 0) {
+
+            productNewCount = productCount - 1;
+         }
 
 
-      });
+         productInput.value = productNewCount;
+         // const productTotal = productNewCount * 59;
+
+         let productTotal = 0;
+         if(product == 'phone'){
+            productTotal = productNewCount * 1219;
+         }
+
+         if(product == 'case'){
+
+            productTotal = productNewCount * 59;
+         }
+
+
+         document.getElementById(product + '-total').innerText = "$" + productTotal;
+         calculateTotal();
+      }
+
+      function calculateTotal(){
+        const phoneInput = document.getElementById('phone-count');
+        const phoneCount = parseInt(phoneInput.value);
+
+        const caseInput = document.getElementById('case-count');
+        const caseCount = parseInt(caseInput.value);
+
+        const totalPrice = phoneCount * 1219 + caseCount * 59;
+
+        document.getElementById('total-price').innerText = "$" + totalPrice;
+
+
+      }
+
+
+
+      // function handleProductChange(isIncrease) {
+      //    const caseInput = document.getElementById('case-count');
+      //    const caseCount = parseInt(caseInput.value);
+      //    // const caseNewCount = caseCount - 1;
+      //    let caseNewCount = 0;
+      //    if (isIncrease == true) {
+      //       caseNewCount = caseCount + 1;
+
+      //    }
+      //    if (isIncrease == false && caseCount > 0) {
+
+      //       caseNewCount = caseCount - 1;
+      //    }
+
+
+      //    caseInput.value = caseNewCount;
+      //    const caseTotal = caseNewCount * 59;
+      //    document.getElementById('case-total').innerText = "$" + caseTotal;
+      // }
+
+
+
+      
+      // function handlePhoneChange(isIncrease) {
+      //    const phoneInput = document.getElementById('phone-count');
+      //    const phoneCount = parseInt(phoneInput.value);
+      //    // const caseNewCount = caseCount - 1;
+      //    let phoneNewCount = 0;
+      //    if (isIncrease == true) {
+      //       phoneNewCount = phoneCount + 1;
+
+      //    }
+      //    if (isIncrease == false && phoneCount > 0) {
+
+      //       phoneNewCount = phoneCount - 1;
+      //    }
+
+
+      //    phoneInput.value = phoneNewCount;
+      //    const phoneTotal = phoneNewCount * 1219;
+      //    document.getElementById('phone-total').innerText = "$" + phoneTotal;
+      // }
+
+
+      // Increment Button Handler for Phone Case
+
+      // document.getElementById('case-increase').addEventListener('click', function () {
+      //    const caseInput = document.getElementById('case-count');   // Capturing id
+      //    const caseCount = parseInt(caseInput.value); //  Convert id from string to number
+      //    const caseNewCount = caseCount + 1;    // Increase the number of the id
+      //    caseInput.value = caseNewCount;     //  Set the value for display 
+      //    const caseTotal = caseNewCount * 59;
+      //    document.getElementById('case-total').innerText = "$" + caseTotal;
+      // });
+
+
+
+      // // Decrement Button Handler for Phone Case
+
+      // document.getElementById('case-decrease').addEventListener('click', function () {
+      //    const caseInput = document.getElementById('case-count');
+      //    const caseCount = parseInt(caseInput.value);
+      //    const caseNewCount = caseCount - 1;
+      //    caseInput.value = caseNewCount;
+      //    const caseTotal = caseNewCount * 59;
+      //    document.getElementById('case-total').innerText = "$" + caseTotal;
+
+
+      // });
+
+
 
 
       // Increment Button Handler for Phone 
-
-
       document.getElementById('phone-increase').addEventListener('click', function () {
-
          const phoneInput = document.getElementById('phone-count');
          const phoneCount = parseInt(phoneInput.value);
          const phoneNewCount = phoneCount + 1;
          phoneInput.value = phoneNewCount;
          const phoneTotal = phoneNewCount * 1219;
          document.getElementById('phone-total').innerText = "$" + phoneTotal;
-       
+         calculation(phoneTotal);
+         console.log(phoneTotal);
       });
 
 
       // Decrement Button for phone
       document.getElementById('phone-decrease').addEventListener('click', function () {
-
          const phoneInput = document.getElementById('phone-count');
          const phoneCount = parseInt(phoneInput.value);
          const phoneNewCount = phoneCount - 1;
@@ -135,19 +243,29 @@
          const phoneTotal = phoneNewCount * 1219;
          document.getElementById('phone-total').innerText = '$' + phoneTotal;
 
+
       });
 
-      
-      // Subtotal Area:
-      const subTotal = document.getElementById('sub-total');
-      const subtotalNumber = parseInt(subTotal.value);
-      const subtotalAmount = phoneTotal + caseTotal;
-      document.getElementById('sub-total').innerText = subtotalAmount;
 
 
-       
-    
-     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
